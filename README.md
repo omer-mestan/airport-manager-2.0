@@ -49,13 +49,20 @@ airport-manager-2.0/
 
 ## Current Status
 
-Project planning and repository setup in progress.
+Backend foundation is now set up with:
+
+- Django project structure
+- custom user model with roles
+- JWT authentication endpoints
+- airport, airline, crew, aircraft, and flight models
+- DRF viewsets for core resources
+- Swagger documentation support
 
 Next milestone:
 
-- initialize Django backend
-- initialize React frontend
-- define core database models
+- add seed data and tests
+- scaffold the React frontend
+- connect frontend dashboards to the API
 
 ## Why This Project Matters
 
@@ -78,6 +85,21 @@ See:
 - `docs/ROADMAP.md`
 - `docs/ARCHITECTURE.md`
 - `docs/TASKS.md`
+
+## Backend Quick Start
+
+From `backend/` run:
+
+```bash
+..\..\venv\Scripts\python.exe manage.py migrate
+..\..\venv\Scripts\python.exe manage.py runserver
+```
+
+Useful URLs:
+
+- `http://127.0.0.1:8000/api/docs/`
+- `http://127.0.0.1:8000/api/schema/`
+- `http://127.0.0.1:8000/admin/`
 
 ## Future Improvements
 
