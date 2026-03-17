@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.airports',
     'apps.airlines',
+    'apps.analytics',
     'apps.crews',
     'apps.flights',
 ]

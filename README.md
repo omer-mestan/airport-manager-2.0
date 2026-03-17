@@ -101,6 +101,17 @@ Useful URLs:
 - `http://127.0.0.1:8000/api/schema/`
 - `http://127.0.0.1:8000/admin/`
 
+Load demo data:
+
+```bash
+..\..\venv\Scripts\python.exe manage.py seed_demo_data
+```
+
+Dashboard endpoints:
+
+- `http://127.0.0.1:8000/api/dashboard/admin/`
+- `http://127.0.0.1:8000/api/dashboard/crew/`
+
 ## Future Improvements
 
 - real-time updates with WebSockets
