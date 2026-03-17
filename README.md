@@ -112,6 +112,21 @@ Dashboard endpoints:
 - `http://127.0.0.1:8000/api/dashboard/admin/`
 - `http://127.0.0.1:8000/api/dashboard/crew/`
 
+## Frontend Quick Start
+
+From `frontend/` run:
+
+```bash
+npm install
+npm run dev
+```
+
+The Vite dev server runs at:
+
+- `http://127.0.0.1:5173/`
+
+Keep the Django backend running on port `8000` while using the frontend so the dev proxy can forward `/api` requests.
+
 ## Future Improvements
 
 - real-time updates with WebSockets
