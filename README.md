@@ -114,10 +114,6 @@ Screenshots are stored in `docs/screenshots/`.
 
 ![Flight Details](docs/screenshots/flight-details.png)
 
-### API Docs
-
-![API Docs](docs/screenshots/api-docs.png)
-
 ## Roadmap
 
 See:
