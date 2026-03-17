@@ -8,6 +8,7 @@ from apps.analytics.views import AdminDashboardView, CrewDashboardView
 from apps.airports.views import AirportViewSet
 from apps.crews.views import CrewProfileViewSet, MyCrewAssignmentsView
 from apps.flights.views import AircraftViewSet, FlightViewSet
+from config.views import home
 
 router = DefaultRouter()
 router.register("airports", AirportViewSet, basename="airport")
@@ -17,6 +18,7 @@ router.register("crew-profiles", CrewProfileViewSet, basename="crew-profile")
 router.register("flights", FlightViewSet, basename="flight")
 
 urlpatterns = [
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
