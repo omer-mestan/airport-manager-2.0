@@ -119,6 +119,8 @@ input {
 .hero-actions a,
 .login-form button,
 .ghost-button,
+.primary-button,
+.danger-button,
 .demo-account-card {
   border: 0;
   cursor: pointer;
@@ -127,7 +129,8 @@ input {
 .login-link,
 .inline-link-button,
 .hero-actions a,
-.login-form button {
+.login-form button,
+.primary-button {
   background: #f4b05d;
   color: #10223c;
   box-shadow: 0 10px 24px rgba(244, 176, 93, 0.24);
@@ -143,6 +146,8 @@ input {
 .hero-actions a:hover,
 .login-form button:hover,
 .ghost-button:hover,
+.primary-button:hover,
+.danger-button:hover,
 .login-link:hover,
 .inline-link-button:hover,
 .demo-account-card:hover {
@@ -426,6 +431,10 @@ td span,
   min-height: calc(100vh - 130px);
 }
 
+.admin-ops-grid {
+  align-items: start;
+}
+
 .auth-card {
   width: min(760px, 100%);
 }
@@ -454,6 +463,52 @@ td span,
   background: #f9fbfe;
 }
 
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.admin-form label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  color: #41536f;
+}
+
+.admin-form input,
+.admin-form select {
+  width: 100%;
+  border: 1px solid #cfdae8;
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: #f9fbfe;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.primary-button,
+.danger-button {
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 700;
+}
+
+.danger-button {
+  background: #ffe7e7;
+  color: #a12222;
+}
+
+.dark-text {
+  color: #17314e;
+}
+
 .demo-account-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -479,6 +534,37 @@ td span,
 
 .metrics-card .summary-card strong {
   font-size: 28px;
+}
+
+.admin-flight-list {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-flight-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid #deebf7;
+  background: #f8fbfe;
+}
+
+.admin-flight-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.admin-flight-copy span {
+  color: #60718a;
+  font-size: 14px;
+}
+
+.admin-flight-actions {
+  display: flex;
+  gap: 10px;
+  align-items: start;
 }
 
 .not-found-card {
@@ -532,7 +618,8 @@ td span,
 
   .summary-grid,
   .two-column-grid,
-  .demo-account-grid {
+  .demo-account-grid,
+  .admin-form {
     grid-template-columns: 1fr;
   }
 
@@ -541,7 +628,14 @@ td span,
     align-items: stretch;
   }
 
-  .list-row {
+  .list-row,
+  .admin-flight-card {
     flex-direction: column;
+  }
+
+  .admin-flight-actions,
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
