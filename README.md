@@ -96,12 +96,27 @@ This repository is intended to showcase:
 
 ## Recommended Screenshots
 
-Store screenshots in [docs/screenshots](C:/Users/Konstantin/Documents/New%20project/airport-manager-2.0/docs/screenshots) and add them here when ready:
+Screenshots are stored in `docs/screenshots/`.
 
-- login page
-- admin dashboard
-- flights board
-- flight details page
+### Home Page
+
+![Home Page](docs/screenshots/home-page.png)
+
+### Login Page
+
+![Login Page](docs/screenshots/login-page.png)
+
+### Flights Board
+
+![Flights Board](docs/screenshots/flights-board.png)
+
+### Flight Details
+
+![Flight Details](docs/screenshots/flight-details.png)
+
+### API Docs
+
+![API Docs](docs/screenshots/api-docs.png)
 
 ## Roadmap
 
