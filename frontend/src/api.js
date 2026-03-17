@@ -3,12 +3,19 @@ const JSON_HEADERS = {
 };
 
 export async function fetchJson(url, options = {}) {
-  const response = await fetch(url, options);
+  let response;
+
+  try {
+    response = await fetch(url, options);
+  } catch (error) {
+    throw new Error("Cannot reach the backend. Start Django on http://127.0.0.1:8000 and try again.");
+  }
+
   const contentType = response.headers.get("content-type") || "";
   const data = contentType.includes("application/json") ? await response.json() : null;
 
   if (!response.ok) {
-    const message = data?.detail || data?.message || "Request failed";
+    const message = data?.detail || data?.message || `Request failed (${response.status})`;
     throw new Error(message);
   }
 
