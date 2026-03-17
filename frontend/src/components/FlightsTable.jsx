@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { formatDateTime, statusTone } from "../utils";
 
 export function FlightsTable({ flights }) {
@@ -16,7 +18,9 @@ export function FlightsTable({ flights }) {
           {flights.map((flight) => (
             <tr key={flight.id}>
               <td>
-                <strong>{flight.flight_number}</strong>
+                <Link to={`/flights/${flight.id}`} className="table-link">
+                  <strong>{flight.flight_number}</strong>
+                </Link>
                 <span>{flight.airline_name}</span>
               </td>
               <td>

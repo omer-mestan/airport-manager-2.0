@@ -46,6 +46,23 @@ export function getFlights() {
   return fetchJson("/api/flights/");
 }
 
+export function getFlightsWithQuery(params = {}) {
+  const query = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      query.set(key, value);
+    }
+  });
+
+  const suffix = query.toString() ? `?${query}` : "";
+  return fetchJson(`/api/flights/${suffix}`);
+}
+
+export function getFlightById(flightId) {
+  return fetchJson(`/api/flights/${flightId}/`);
+}
+
 export function getAirports() {
   return fetchJson("/api/airports/");
 }

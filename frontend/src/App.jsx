@@ -5,6 +5,7 @@ import { AppLayout } from "./components/AppLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { CrewDashboardPage } from "./pages/CrewDashboardPage";
+import { FlightDetailsPage } from "./pages/FlightDetailsPage";
 import { FlightsPage } from "./pages/FlightsPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
@@ -32,6 +33,7 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/flights" element={<FlightsPage />} />
+            <Route path="/flights/:flightId" element={<FlightDetailsPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
               path="/dashboard/admin"
