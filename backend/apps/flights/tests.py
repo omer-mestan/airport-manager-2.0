@@ -64,4 +64,57 @@ class FlightApiTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_admin_cannot_create_flight_with_same_origin_and_destination(self):
+        admin = User.objects.create_user(
+            email="admin@example.com",
+            full_name="Admin User",
+            role=UserRole.ADMIN,
+            password="strongpass123",
+        )
+        self.client.force_authenticate(user=admin)
+
+        payload = {
+            "flight_number": "FB556",
+            "airline": self.airline.id,
+            "origin_airport": self.origin.id,
+            "destination_airport": self.origin.id,
+            "aircraft": self.aircraft.id,
+            "departure_time": timezone.now().isoformat(),
+            "arrival_time": (timezone.now() + timedelta(hours=2)).isoformat(),
+            "gate": "B2",
+            "status": "ON_TIME",
+        }
+
+        response = self.client.post("/api/flights/", payload, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("destination_airport", response.data)
+
+    def test_admin_cannot_create_flight_with_invalid_time_order(self):
+        admin = User.objects.create_user(
+            email="admin2@example.com",
+            full_name="Admin User 2",
+            role=UserRole.ADMIN,
+            password="strongpass123",
+        )
+        self.client.force_authenticate(user=admin)
+
+        departure = timezone.now()
+        payload = {
+            "flight_number": "FB557",
+            "airline": self.airline.id,
+            "origin_airport": self.origin.id,
+            "destination_airport": self.destination.id,
+            "aircraft": self.aircraft.id,
+            "departure_time": departure.isoformat(),
+            "arrival_time": departure.isoformat(),
+            "gate": "B3",
+            "status": "ON_TIME",
+        }
+
+        response = self.client.post("/api/flights/", payload, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("arrival_time", response.data)
+
 # Create your tests here.

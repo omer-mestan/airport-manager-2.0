@@ -42,3 +42,21 @@ class FlightSerializer(serializers.ModelSerializer):
             "status",
             "crew_assignments",
         )
+
+    def validate(self, attrs):
+        origin_airport = attrs.get("origin_airport") or getattr(self.instance, "origin_airport", None)
+        destination_airport = attrs.get("destination_airport") or getattr(self.instance, "destination_airport", None)
+        departure_time = attrs.get("departure_time") or getattr(self.instance, "departure_time", None)
+        arrival_time = attrs.get("arrival_time") or getattr(self.instance, "arrival_time", None)
+
+        if origin_airport and destination_airport and origin_airport == destination_airport:
+            raise serializers.ValidationError(
+                {"destination_airport": "Destination airport must be different from the origin airport."}
+            )
+
+        if departure_time and arrival_time and arrival_time <= departure_time:
+            raise serializers.ValidationError(
+                {"arrival_time": "Arrival time must be later than the departure time."}
+            )
+
+        return attrs

@@ -190,6 +190,14 @@ export function AdminDashboardPage() {
       setIsSubmitting(true);
       setOperationsError("");
 
+      if (form.origin_airport && form.destination_airport && form.origin_airport === form.destination_airport) {
+        throw new Error("Destination airport must be different from the origin airport.");
+      }
+
+      if (form.departure_time && form.arrival_time && new Date(form.arrival_time) <= new Date(form.departure_time)) {
+        throw new Error("Arrival time must be later than the departure time.");
+      }
+
       const payload = toApiPayload(form);
       if (editingFlightId) {
         await updateFlight(token, editingFlightId, payload);
