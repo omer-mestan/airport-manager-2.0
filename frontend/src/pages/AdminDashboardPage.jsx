@@ -73,6 +73,7 @@ export function AdminDashboardPage() {
   const [airlines, setAirlines] = useState([]);
   const [aircraft, setAircraft] = useState([]);
   const [operationsError, setOperationsError] = useState("");
+  const [operationsSuccess, setOperationsSuccess] = useState("");
   const [loadingOperations, setLoadingOperations] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -136,6 +137,7 @@ export function AdminDashboardPage() {
           setAirlines(unwrapResults(airlinesData));
           setAircraft(unwrapResults(aircraftData));
           setOperationsError("");
+          setOperationsSuccess("");
         }
       } catch (error) {
         if (isActive) {
@@ -189,6 +191,7 @@ export function AdminDashboardPage() {
     try {
       setIsSubmitting(true);
       setOperationsError("");
+      setOperationsSuccess("");
 
       if (form.origin_airport && form.destination_airport && form.origin_airport === form.destination_airport) {
         throw new Error("Destination airport must be different from the origin airport.");
@@ -206,6 +209,7 @@ export function AdminDashboardPage() {
       }
 
       await refreshDashboardAndFlights();
+      setOperationsSuccess(editingFlightId ? "Flight updated successfully." : "Flight created successfully.");
       resetForm();
     } catch (error) {
       setOperationsError(error.message);
@@ -215,10 +219,21 @@ export function AdminDashboardPage() {
   }
 
   async function handleDelete(flightId) {
+    const targetFlight = flights.find((flight) => flight.id === flightId);
+    const isConfirmed = window.confirm(
+      `Delete flight ${targetFlight?.flight_number || ""}? This action cannot be undone.`,
+    );
+
+    if (!isConfirmed) {
+      return;
+    }
+
     try {
       setOperationsError("");
+      setOperationsSuccess("");
       await deleteFlight(token, flightId);
       await refreshDashboardAndFlights();
+      setOperationsSuccess("Flight deleted successfully.");
       if (editingFlightId === flightId) {
         resetForm();
       }
@@ -422,6 +437,7 @@ export function AdminDashboardPage() {
           </form>
 
           {operationsError ? <p className="error-text">{operationsError}</p> : null}
+          {operationsSuccess ? <p className="success-text">{operationsSuccess}</p> : null}
         </SectionPanel>
 
         <SectionPanel

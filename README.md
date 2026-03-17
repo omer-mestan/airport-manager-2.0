@@ -4,6 +4,16 @@ Airport Manager 2.0 is a full-stack web platform for airport flight operations, 
 
 This project is built as an internship-ready portfolio application and focuses on realistic workflows, role-based access, API quality, and a clean dashboard experience.
 
+## Highlights
+
+- JWT authentication with role-based access for `Passenger`, `CrewMember`, and `Admin`
+- public passenger flight board with search, filtering, and flight details pages
+- protected admin and crew dashboards
+- admin flight CRUD from the React UI
+- Swagger / OpenAPI documentation for backend testing
+- seeded demo accounts and sample flight data
+- backend validation for flight route and schedule consistency
+
 ## Main Goals
 
 - build a production-style full-stack project
@@ -11,7 +21,7 @@ This project is built as an internship-ready portfolio application and focuses o
 - show role-based access control and business logic
 - present a clean and professional GitHub repository
 
-## Planned Features
+## Implemented Features
 
 - JWT authentication
 - user roles: `Passenger`, `CrewMember`, `Admin`
@@ -19,9 +29,12 @@ This project is built as an internship-ready portfolio application and focuses o
 - airport, airline, aircraft, and crew management
 - search and filtering by destination, status, airline, and departure time
 - passenger flights board
+- passenger search and status filters
+- flight details page
 - crew dashboard
 - admin operations dashboard
-- analytics cards and charts
+- admin dashboard CRUD workflow
+- analytics summary cards
 - OpenAPI / Swagger documentation
 - automated tests
 
@@ -29,10 +42,9 @@ This project is built as an internship-ready portfolio application and focuses o
 
 - Backend: Django, Django REST Framework
 - Frontend: React, Vite
-- Database: PostgreSQL
+- Database: SQLite for local development
 - Auth: JWT
-- Styling: Tailwind CSS
-- Charts: Recharts
+- Styling: custom CSS
 - Docs: drf-spectacular
 
 ## Repository Structure
@@ -47,9 +59,15 @@ airport-manager-2.0/
     TASKS.md
 ```
 
+## Demo Accounts
+
+- Admin: `admin@airportmanager.dev` / `admin12345`
+- Crew: `crew@airportmanager.dev` / `crew12345`
+- Passenger: `passenger@airportmanager.dev` / `passenger12345`
+
 ## Current Status
 
-Backend foundation is now set up with:
+Project currently includes:
 
 - Django project structure
 - custom user model with roles
@@ -57,12 +75,10 @@ Backend foundation is now set up with:
 - airport, airline, crew, aircraft, and flight models
 - DRF viewsets for core resources
 - Swagger documentation support
-
-Next milestone:
-
-- add seed data and tests
-- scaffold the React frontend
-- connect frontend dashboards to the API
+- React frontend with route-based pages
+- protected dashboard routes
+- admin CRUD interface for flights
+- passenger filters and flight details
 
 ## Why This Project Matters
 
@@ -78,6 +94,15 @@ This repository is intended to showcase:
 - full-stack architecture
 - testing and documentation
 
+## Recommended Screenshots
+
+Store screenshots in [docs/screenshots](C:/Users/Konstantin/Documents/New%20project/airport-manager-2.0/docs/screenshots) and add them here when ready:
+
+- login page
+- admin dashboard
+- flights board
+- flight details page
+
 ## Roadmap
 
 See:
@@ -92,6 +117,7 @@ From `backend/` run:
 
 ```bash
 ..\..\venv\Scripts\python.exe manage.py migrate
+..\..\venv\Scripts\python.exe manage.py seed_demo_data
 ..\..\venv\Scripts\python.exe manage.py runserver
 ```
 
@@ -100,12 +126,6 @@ Useful URLs:
 - `http://127.0.0.1:8000/api/docs/`
 - `http://127.0.0.1:8000/api/schema/`
 - `http://127.0.0.1:8000/admin/`
-
-Load demo data:
-
-```bash
-..\..\venv\Scripts\python.exe manage.py seed_demo_data
-```
 
 Dashboard endpoints:
 
@@ -123,9 +143,17 @@ npm run dev
 
 The Vite dev server runs at:
 
-- `http://127.0.0.1:5173/`
+- `http://localhost:5173/`
 
 Keep the Django backend running on port `8000` while using the frontend so the dev proxy can forward `/api` requests.
+
+## Suggested Demo Flow
+
+1. Open the login page and sign in with the admin demo account.
+2. Show the admin dashboard cards and upcoming flights.
+3. Create or edit a flight from the CRUD form.
+4. Open the passenger flight board and filter by status.
+5. Open a single flight details page.
 
 ## Future Improvements
 

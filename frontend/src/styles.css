@@ -648,6 +648,10 @@ td span,
   color: #b12626;
 }
 
+.success-text {
+  color: #207548;
+}
+
 @media (max-width: 1040px) {
   .site-header {
     grid-template-columns: 1fr;
